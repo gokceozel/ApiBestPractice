@@ -1,6 +1,7 @@
 ﻿using ApiBestPractice.Core.Entities;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 
@@ -13,6 +14,7 @@ namespace ApiBestPractice.Core.DataAccess
         void Delete(T entity);
         T Get(Expression<Func<T,bool>> filter);
         IList<T> GetList(Expression<Func<T,bool>> filter=null);
+       // IQueryable<T> SearchText(IQueryable<T> query, string text);
 
     }
 }
