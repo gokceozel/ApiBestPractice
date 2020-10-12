@@ -14,6 +14,7 @@ namespace ApiBestPractice.Core.DataAccess
         void Delete(T entity);
         T Get(Expression<Func<T,bool>> filter);
         IList<T> GetList(Expression<Func<T,bool>> filter=null);
+        void AddList(List<T> list);
        // IQueryable<T> SearchText(IQueryable<T> query, string text);
 
     }

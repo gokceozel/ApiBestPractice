@@ -8,41 +8,76 @@ using System.Text;
 
 namespace ApiBestPractice.Core.DataAccess.EntityFramework
 {
-    public class EfEntityRepositoryBase<T, Context> : IEntityRepository<T>
+    public class EfEntityRepositoryBase<T, TContext> : IEntityRepository<T>
         where T : class, IEntity, new()
-        where Context : DbContext, new()
+        where TContext : DbContext, new()
 
     {
         public void Add(T entity)
         {
-            throw new NotImplementedException();
+            using (var context = new TContext())
+            {
+                var added = context.Entry(entity);
+                added.State = EntityState.Added;
+                context.Add(added);
+                context.SaveChanges();
+            }
+        }
+
+        public void AddList(List<T> list)
+        {
+            using(var context=new TContext())
+            {
+                var added = context.Entry(list);
+                added.State = EntityState.Added;
+                context.AddRangeAsync(added);
+                context.SaveChanges();
+            }
         }
 
         public void Delete(T entity)
         {
-            throw new NotImplementedException();
+            using(var context=new TContext())
+            {
+                var deleted = context.Entry(entity);
+                deleted.State = EntityState.Deleted;
+                context.SaveChanges();
+            }
         }
 
         public T Get(Expression<Func<T, bool>> filter)
         {
-            throw new NotImplementedException();
+            using (var context=new TContext())
+            {
+                return context.Set<T>().SingleOrDefault(filter);
+            }
         }
 
         public IList<T> GetList(Expression<Func<T, bool>> filter = null)
         {
-            throw new NotImplementedException();
+            using (var context = new TContext())
+            {
+                return filter == null ? context.Set<T>().ToList()
+                                     : context.Set<T>().Where(filter).ToList();
+            }
         }
 
-        public IQueryable<T> SearchText(IQueryable<T> query, string text)
-        {
+        #region Eklenecek
+        //public IQueryable<T> SearchText(IQueryable<T> query, string text)
+        //{//BUSİNESS İÇİNDE YAZ
 
-            throw new NotImplementedException();
-            //return query.Where(d => EF.Functions.Like(d., $"%{text}%"));
-        }
-
+        //    throw new NotImplementedException();
+        //    //return query.Where(d => EF.Functions.Like(d., $"%{text}%"));
+        //}
+        #endregion
         public void Update(T entity)
         {
-            throw new NotImplementedException();
+            using (var context=new TContext())
+            {
+                var updated = context.Entry(entity);
+                updated.State = EntityState.Modified;
+                context.SaveChanges();
+            }
         }
     }
 }
