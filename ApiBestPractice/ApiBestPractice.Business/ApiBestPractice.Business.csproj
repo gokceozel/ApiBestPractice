@@ -5,9 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Abstract\" />
-    <Folder Include="Concrete\" />
-    <Folder Include="DependencyResolvers\Autofac\" />
+    <PackageReference Include="Autofac" Version="4.9.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ApiBestPractice.DataAccess\ApiBestPractice.DataAccess.csproj" />
   </ItemGroup>
 
 </Project>
