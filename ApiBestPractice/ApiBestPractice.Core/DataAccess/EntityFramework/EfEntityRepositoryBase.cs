@@ -11,7 +11,6 @@ namespace ApiBestPractice.Core.DataAccess.EntityFramework
     public class EfEntityRepositoryBase<T, TContext> : IEntityRepository<T>
         where T : class, IEntity, new()
         where TContext : DbContext, new()
-
     {
         public void Add(T entity)
         {

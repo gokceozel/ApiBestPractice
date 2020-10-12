@@ -1,5 +1,6 @@
 ﻿using ApiBestPractice.Core.DataAccess;
 using ApiBestPractice.Core.DataAccess.EntityFramework;
+using ApiBestPractice.DataAccess.Abstract;
 using ApiBestPractice.DataAccess.Concrete.EntityFramework.Contexts;
 using ApiBestPractice.Entities.Concrete;
 using System;
@@ -9,7 +10,7 @@ using System.Text;
 
 namespace ApiBestPractice.DataAccess.Concrete.EntityFramework
 {
-    public class EfCategoryDal :EfEntityRepositoryBase<Category,NorthwindContext>
+    public class EfCategoryDal :EfEntityRepositoryBase<Category,NorthwindContext> ,ICategoryDal
     {
     }
 }
