@@ -17,7 +17,6 @@ namespace ApiBestPractice.Business.DependencyResolvers.Autofac
             builder.RegisterType<EfProductDal>().As<IProductDal>();
             builder.RegisterType<CategoryManager>().As<ICategoryService>();
             builder.RegisterType<EfCategoryDal>().As<ICategoryDal>();
-        
         }
     }
 }
