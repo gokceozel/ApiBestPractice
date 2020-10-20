@@ -1,9 +1,11 @@
 ﻿using ApiBestPractice.Business.Abstract;
+using ApiBestPractice.Business.Constants;
 using ApiBestPractice.Core.Utilities.Results;
 using ApiBestPractice.DataAccess.Abstract;
 using ApiBestPractice.Entities.Concrete;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace ApiBestPractice.Business.Concrete
@@ -18,22 +20,24 @@ namespace ApiBestPractice.Business.Concrete
         }
         public IResult AddProduct(Product product)
         {
-            throw new NotImplementedException();
+            _productDal.Add(product);
+            return new SuccessResult(Messages.ProductAdded);
         }
 
         public IResult DeleteProduct(Product product)
         {
-            throw new NotImplementedException();
+            _productDal.Delete(product);
+            return new SuccessResult(Messages.ProductDeleted);
         }
 
         public IDataResult<Product> GetById(int id)
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<Product>(_productDal.Get(x => x.ProductId == id));
         }
 
         public IDataResult<List<Product>> GetListByCategory(int catId)
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<List<Product>>(_productDal.GetList(x=>x.CategoryId==catId).ToList());
         }
 
         public IDataResult<List<Product>> GetListProduct()
