@@ -4,6 +4,7 @@ using ApiBestPractice.DataAccess.Abstract;
 using ApiBestPractice.Entities.Concrete;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace ApiBestPractice.Business.Concrete
@@ -17,7 +18,7 @@ namespace ApiBestPractice.Business.Concrete
         }
         public IDataResult<List<Category>> GetListCategory()
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<List<Category>>(_categoryDal.GetList().ToList());
         }
     }
 }

@@ -31,7 +31,7 @@ namespace ApiBestPractice.Business.Concrete
             throw new NotImplementedException();
         }
 
-        public IDataResult<List<Product>> GetListByCategory()
+        public IDataResult<List<Product>> GetListByCategory(int catId)
         {
             throw new NotImplementedException();
         }
