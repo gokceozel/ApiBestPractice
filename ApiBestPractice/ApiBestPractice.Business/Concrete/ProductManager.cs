@@ -42,12 +42,13 @@ namespace ApiBestPractice.Business.Concrete
 
         public IDataResult<List<Product>> GetListProduct()
         {
-            throw new NotImplementedException();
-        }
+            return new SuccessDataResult<List<Product>>(_productDal.GetList().ToList());
 
+        }
         public IResult UpdateProduct(Product product)
         {
-            throw new NotImplementedException();
+            _productDal.Update(product);
+            return new SuccessResult(Messages.ProductUpdated);
         }
     }
 }
